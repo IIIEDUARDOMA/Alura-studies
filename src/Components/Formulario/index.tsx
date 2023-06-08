@@ -1,11 +1,27 @@
 import React from "react";
 import Button from "../Button";
 import style from './Formulario.module.scss'
+import { ITarefa } from "../../Type/tarefas";
 
-class Formulario extends React.Component{
+
+class Formulario extends React.Component<{setTarefas: React.Dispatch< React.SetStateAction<ITarefa[]>>}>{
+    state = {
+        tarefa: '',
+        tempo: '00:00',
+    }
+
+    adicionarTarefa(evento: React.FormEvent<HTMLElement>){
+        evento.preventDefault();
+        this.props.setTarefas(tarefaAntiga=>[...tarefaAntiga, {...this.state}])
+        this.setState({
+            tarefa:"",
+            tempo:'00:00'
+        })        
+    }
+
     render(): React.ReactNode {
         return(
-            <form className={style.novaTarefa}>
+            <form className={style.novaTarefa} onSubmit={this.adicionarTarefa.bind(this)}>
                 <div className={style.inputContainer}>
                     <label htmlFor="tarefa">
                         Adicione um novo estudo
@@ -13,6 +29,8 @@ class Formulario extends React.Component{
                     <input 
                         type="text"
                         name="tarefa"
+                        value={this.state.tarefa}
+                        onChange={evento => this.setState({...this.state, tarefa:evento.target.value})}
                         id="tarefa"
                         placeholder="O que você quer estudar?"
                         required
@@ -26,14 +44,16 @@ class Formulario extends React.Component{
                     type="time"
                     step="1"
                     name="tempo"
+                    value={this.state.tempo}
+                    onChange={enveto => this.setState({...this.state, tempo:enveto.target.value})}
                     id="tempo"
                     min="00:00:00"
-                    max="01:30:00"
+                    max="03:30:00"
                     required
                     />
                 </div>
-                <Button>
-                    Enviar
+                <Button type="submit">
+                    Adicionar
                 </Button>
             </form>
         )

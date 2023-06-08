@@ -1,24 +1,13 @@
+import { useState } from "react";
 import Item from "./Item";
 import style from "./Lista.module.scss";
+import { ITarefa } from "../../Type/tarefas";
 
-function Lista() {
-   const tarefas = [
-      {
-         tarefa: "React",
-         tempo: "02:00:00",
-      },
-      {
-         tarefa: "JavaScript",
-         tempo: "01:00:00",
-      },
-      {
-         tarefa: "TypeScript",
-         tempo: "03:00:00",
-      },
-   ];
+function Lista({tarefas}:{tarefas:ITarefa[]}) {
+   
    return (
       <aside className={style.listaTarefas}>
-         <h2>Estudos do dia</h2>
+         <h2 >Estudos do dia</h2>
          <ul>
             {tarefas.map((item, index) => (
                <Item key={index} {...item} />
