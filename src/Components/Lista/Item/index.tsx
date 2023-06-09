@@ -1,5 +1,5 @@
-import { ITarefa } from "../../../Type/tarefas";
-import style from "../Lista.module.scss";
+import { ITarefa } from "../../../Types/tarefas";
+import style from "./item.module.scss";
 
 interface props extends ITarefa{
    selecionaTarefa: (tarefaSelecionada: ITarefa)=> void
@@ -16,8 +16,8 @@ export default function Item({
 ) {
    return (
       <li 
-         className={`${style.item} ${selecionado ? style.itemSelecionado : ''}`}
-         onClick={()=> selecionaTarefa({
+         className={`${style.item} ${selecionado ? style.itemSelecionado : ''} ${completado ? style.itemCompletado : ''}`}
+          onClick={()=> !completado && selecionaTarefa({
             tarefa,
             tempo,
             selecionado,
@@ -27,6 +27,7 @@ export default function Item({
       >
          <h3>{tarefa}</h3>
          <span>{tempo}</span>
+         {completado &&<span className={style.concluido} aria-label= "tarefa concluída"></span>}
       </li>
    );
 }

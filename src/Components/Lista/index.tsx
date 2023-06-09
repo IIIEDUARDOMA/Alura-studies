@@ -1,7 +1,6 @@
-import { useState } from "react";
 import Item from "./Item";
 import style from "./Lista.module.scss";
-import { ITarefa } from "../../Type/tarefas";
+import { ITarefa } from "../../Types/tarefas";
 
 interface props {
    tarefas:ITarefa[],
