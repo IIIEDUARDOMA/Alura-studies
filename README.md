@@ -15,5 +15,5 @@
         <li >CSS - SASS</li>
     </div>
     <br/>
-    <img src = './src/assets/img/Rodape Readme.png/>
+    <img src = './src/assets/img/Desenvolvido.png' />
     ' 
